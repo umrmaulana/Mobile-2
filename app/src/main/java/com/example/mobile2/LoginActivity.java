@@ -79,6 +79,10 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,"Login Berhasil",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             intent.putExtra("username",json.getJSONObject("data").getString("username"));
+                            intent.putExtra("nama",json.getJSONObject("data").getString("nama"));
+                            intent.putExtra("foto",json.getJSONObject("data").getString("foto"));
+                            intent.putExtra("password",json.getJSONObject("data").getString("password"));
+                            intent.putExtra("status",json.getJSONObject("data").getString("status"));
                             intent.putExtra("email",json.getJSONObject("data").getString("email"));
                             startActivity(intent);
                             finish();
