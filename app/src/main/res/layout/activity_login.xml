@@ -45,10 +45,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="username"
+            app:hintTextColor="@color/black"
             app:boxStrokeColor="@color/secondary"
             app:boxStrokeWidth="2dp"
             app:startIconDrawable="@drawable/user"
-            app:endIconMode="clear_text">
+            app:endIconMode="clear_text"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ti_username"
@@ -64,10 +69,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="password"
+            app:hintTextColor="@color/black"
             app:boxStrokeColor="@color/secondary"
             app:boxStrokeWidth="2dp"
             app:startIconDrawable="@drawable/lock"
-            app:endIconMode="password_toggle">
+            app:endIconMode="password_toggle"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ti_password"

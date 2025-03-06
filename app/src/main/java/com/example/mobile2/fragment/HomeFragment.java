@@ -1,8 +1,5 @@
 package com.example.mobile2.fragment;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,22 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.mobile2.MenuLatihan;
-import com.example.mobile2.MenuPraktikum;
+import com.example.mobile2.SessionManager;
+import com.example.mobile2.latihan.MenuLatihan;
+import com.example.mobile2.praktikum.MenuPraktikum;
 import com.example.mobile2.R;
 
 /**
@@ -37,6 +29,7 @@ import com.example.mobile2.R;
  */
 public class HomeFragment extends Fragment {
     private String nama, email, foto;
+    private SessionManager sessionManager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,25 +78,23 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        AppCompatImageButton btnLatihan = view.findViewById(R.id.btnLatihan);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            nama = bundle.getString("nama");
-            email = bundle.getString("email");
-            foto = bundle.getString("foto");
-        }
-        TextView tvNama = view.findViewById(R.id.tv_nama);
-        TextView tvEmail = view.findViewById(R.id.tv_email);
-        ImageView imgFoto = view.findViewById(R.id.img_foto);
-        tvNama.setText(nama);
-        tvEmail.setText(email);
-        if (foto != null && !foto.isEmpty()) {
+        sessionManager = new SessionManager(requireContext());
+        TextView tvNama = (TextView) view.findViewById(R.id.tv_nama);
+        TextView tvEmail = (TextView) view.findViewById(R.id.tv_email);
+        ImageView ivProfile = (ImageView) view.findViewById(R.id.img_foto);
+
+        if (sessionManager.isLoggedIn()) {
+            tvNama.setText(sessionManager.getNama());
+            tvEmail.setText(sessionManager.getEmail());
+
             Glide.with(this)
-                    .load(foto)
-                    .into(imgFoto);
+                    .load(sessionManager.getFoto())
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(ivProfile);
         } else {
-            imgFoto.setImageResource(R.drawable.ic_launcher_foreground);
+            Toast.makeText(getContext(), "Silakan login terlebih dahulu", Toast.LENGTH_SHORT).show();
         }
+        AppCompatImageButton btnLatihan = view.findViewById(R.id.btnLatihan);
         btnLatihan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

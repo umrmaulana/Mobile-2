@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mobile2.LoginActivity;
 import com.example.mobile2.R;
+import com.example.mobile2.SessionManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,7 @@ import com.example.mobile2.R;
  */
 public class IdentitasFragment extends Fragment {
     private String nama, foto;
+    private SessionManager sessionManager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,22 +73,20 @@ public class IdentitasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_identitas, container, false);
-        Button btnLogout = view.findViewById(R.id.btnLogout);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            nama = bundle.getString("nama");
-            foto = bundle.getString("foto");
-        }
-        TextView tvNama = view.findViewById(R.id.tv_nama);
-        ImageView imgFoto = view.findViewById(R.id.img_foto);
-        tvNama.setText(nama);
-        if (foto != null && !foto.isEmpty()) {
+        sessionManager = new SessionManager(requireContext());
+        TextView tvNama = (TextView) view.findViewById(R.id.tv_nama);
+        ImageView ivProfile = (ImageView) view.findViewById(R.id.img_foto);
+
+        if (sessionManager.isLoggedIn()) {
+            tvNama.setText(sessionManager.getNama());
             Glide.with(this)
-                    .load(foto)
-                    .into(imgFoto);
+                    .load(sessionManager.getFoto())
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(ivProfile);
         } else {
-            imgFoto.setImageResource(R.drawable.ic_launcher_foreground);
+            Toast.makeText(getContext(), "Silakan login terlebih dahulu", Toast.LENGTH_SHORT).show();
         }
+        Button btnLogout = view.findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
