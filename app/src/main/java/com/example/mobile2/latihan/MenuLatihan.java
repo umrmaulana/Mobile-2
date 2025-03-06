@@ -46,10 +46,10 @@ public class MenuLatihan extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         latihanList = new ArrayList<>();
-        latihanList.add(new ModelLatihan("Latihan 1.1", "Product Retrofit", ProductRetrofit.class));
-        latihanList.add(new ModelLatihan("Latihan 1.2", "Product API", ProductRetrofit.class));
-        latihanList.add(new ModelLatihan("Latihan 1.3", "JSON Parsing", ProductRetrofit.class));
-        latihanList.add(new ModelLatihan("Latihan 1.4", "CRUD Retrofit", ProductRetrofit.class));
+        latihanList.add(new ModelLatihan("Latihan 1.1", "Daftar Mahasiswa", Latih1_1.class));
+        latihanList.add(new ModelLatihan("Latihan 2.1", "Product API", Latih2_1.class));
+        latihanList.add(new ModelLatihan("Latihan 1.3", "JSON Parsing", Latih1_1.class));
+        latihanList.add(new ModelLatihan("Latihan 1.4", "CRUD Retrofit", Latih1_1.class));
 
         adapter = new AdapterLatihan(this, latihanList);
         recyclerView.setAdapter(adapter);

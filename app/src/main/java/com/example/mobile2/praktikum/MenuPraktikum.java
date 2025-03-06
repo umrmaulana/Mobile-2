@@ -14,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobile2.MainActivity;
 import com.example.mobile2.R;
-import com.example.mobile2.adapter.AdapterLatihan;
 import com.example.mobile2.adapter.AdapterPraktikum;
-import com.example.mobile2.latihan.ModelLatihan;
-import com.example.mobile2.latihan.ProductRetrofit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +45,9 @@ public class MenuPraktikum extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         praktikumList = new ArrayList<>();
-        praktikumList.add(new ModelPraktikum("Praktikum 1.1", "Product Retrofit", Prak1_1.class));
-        praktikumList.add(new ModelPraktikum("Praktikum 1.2", "Product API", Prak1_1.class));
-        praktikumList.add(new ModelPraktikum("Praktikum 1.3", "JSON Parsing", Prak1_1.class));
+        praktikumList.add(new ModelPraktikum("Praktikum 1.1", "Glide", Prak1_1.class));
+        praktikumList.add(new ModelPraktikum("Praktikum 2.1", "Daftar Mahasiswa", Prak2_1.class));
+        praktikumList.add(new ModelPraktikum("Praktikum 2.2", "Login Retrofit", Prak2_2.class));
         praktikumList.add(new ModelPraktikum("Praktikum 1.4", "CRUD Retrofit", Prak1_1.class));
 
         adapter = new AdapterPraktikum(this, praktikumList);

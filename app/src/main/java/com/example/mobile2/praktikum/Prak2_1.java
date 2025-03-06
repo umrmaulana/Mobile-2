@@ -1,4 +1,4 @@
-package com.example.mobile2.latihan;
+package com.example.mobile2.praktikum;
 
 import android.os.Bundle;
 
@@ -10,13 +10,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.mobile2.R;
 
-public class ProductRetrofit extends AppCompatActivity {
+public class Prak2_1 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_product_retrofit);
+        setContentView(R.layout.activity_prak21);
+        getSupportActionBar().setTitle("Daftar Mahasiswa");
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
