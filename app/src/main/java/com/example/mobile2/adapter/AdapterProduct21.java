@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mobile2.R;
 import com.example.mobile2.latihan.Latih2_1;
 
@@ -49,14 +50,12 @@ public class AdapterProduct21 extends RecyclerView.Adapter<AdapterProduct21.View
         holder.textViewMerk.setText(product11.getMerk());
         holder.textViewHargaBeli.setText(formatRupiah(product11.getHargaBeli()));
         holder.textViewStok.setText(product11.getStok());
-        String imageName = product11.getFoto();
-        int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
-
-        if (imageResId != 0) {
-            holder.imageViewProduct.setImageResource(imageResId);
-        } else {
-            holder.imageViewProduct.setImageResource(R.drawable.ic_launcher_foreground);
-        }
+        String imageUrl = product11.getFoto();
+        Glide.with(context)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.imageViewProduct);
     }
 
     @Override

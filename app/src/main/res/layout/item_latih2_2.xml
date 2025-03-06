@@ -17,10 +17,11 @@
     <TextView
         android:id="@+id/textViewMerk"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="18dp"
         android:text="Nama produk"
         android:textAlignment="center"
-        android:textSize="12sp" />
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/textViewHargaBeli"
