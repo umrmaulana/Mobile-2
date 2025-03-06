@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mobile2.LoginActivity;
 import com.example.mobile2.R;
 
@@ -19,6 +22,7 @@ import com.example.mobile2.R;
  * create an instance of this fragment.
  */
 public class IdentitasFragment extends Fragment {
+    private String nama, foto;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,6 +61,8 @@ public class IdentitasFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            nama = getArguments().getString("nama", "Guest");
+            foto = getArguments().getString("foto", "");
         }
     }
 
@@ -65,6 +71,21 @@ public class IdentitasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_identitas, container, false);
         Button btnLogout = view.findViewById(R.id.btnLogout);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            nama = bundle.getString("nama");
+            foto = bundle.getString("foto");
+        }
+        TextView tvNama = view.findViewById(R.id.tv_nama);
+        ImageView imgFoto = view.findViewById(R.id.img_foto);
+        tvNama.setText(nama);
+        if (foto != null && !foto.isEmpty()) {
+            Glide.with(this)
+                    .load(foto)
+                    .into(imgFoto);
+        } else {
+            imgFoto.setImageResource(R.drawable.ic_launcher_foreground);
+        }
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

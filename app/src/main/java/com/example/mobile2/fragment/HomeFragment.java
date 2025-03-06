@@ -75,6 +75,9 @@ public class HomeFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            nama = getArguments().getString("nama", "Guest");
+            email = getArguments().getString("email", "Tidak ada email");
+            foto = getArguments().getString("foto", "");
         }
     }
 
